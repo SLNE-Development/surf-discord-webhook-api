@@ -1,12 +1,11 @@
 package dev.slne.surf.discord.webhook.api.test
 
 import dev.slne.surf.discord.webhook.api.api.DiscordClient
-import java.net.URI
 
 
 suspend fun main() {
     val webhook = DiscordClient(
-        URI.create("https://discord.com/api/webhooks/WEBHOOK_ID/WEBHOOK_TOKEN").toURL()
+        "https://discord.com/api/webhooks/WEBHOOK_ID/WEBHOOK_TOKEN"
     )
 
     webhook.sendComponents {

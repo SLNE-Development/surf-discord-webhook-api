@@ -5,15 +5,14 @@ import io.ktor.client.*
 import io.ktor.client.engine.cio.*
 import io.ktor.client.request.*
 import io.ktor.http.*
-import java.net.URL
 
 class DiscordClient(
-    private val webhookUrl: URL
+    private val webhookUrl: String
 ) : AutoCloseable {
     private val client = HttpClient(CIO)
 
     suspend fun sendJson(json: String): Boolean {
-        val response = client.post(webhookUrl.toString()) {
+        val response = client.post(webhookUrl) {
             url { parameters.append("with_components", "true") }
             accept(ContentType.Application.Json)
             contentType(ContentType.Application.Json)
