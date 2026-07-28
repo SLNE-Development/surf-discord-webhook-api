@@ -1,6 +1,7 @@
 plugins {
-    kotlin("jvm") version "2.2.21"
+    kotlin("jvm") version "2.4.10"
     kotlin("plugin.serialization") version "1.9.22"
+    publishing
 }
 
 repositories {
@@ -17,4 +18,17 @@ dependencies {
 
 kotlin {
     jvmToolchain(21)
+}
+
+publishing {
+    repositories {
+        maven("https://reposilite.slne.dev/releases/") {
+            name = "slne-repository-releases"
+
+            credentials {
+                username = System.getenv("SLNE_RELEASES_REPO_USERNAME")
+                password = System.getenv("SLNE_RELEASES_REPO_PASSWORD")
+            }
+        }
+    }
 }
